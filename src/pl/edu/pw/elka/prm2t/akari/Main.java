@@ -35,6 +35,15 @@ public class Main {
         JPanel panel2 = new JPanel();
 
         JButton nowaGra = new JButton("Nowa gra");
+        nowaGra.addActionListener(e->{
+
+            Plansza plansza = new Plansza(3);
+            JPanel panelPlanszy = plansza.generujPlansze();
+            plansza.wypisanieNaKonsole();
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(panelPlanszy);
+            frame.revalidate();
+        });
 
         JButton wczytaj = new JButton("Wczytaj");
 
@@ -60,7 +69,7 @@ public class Main {
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Gra Akari");
-        frame.setSize(600, 500);
+        frame.setSize(600, 600);
         openFrame(frame);
 
 
