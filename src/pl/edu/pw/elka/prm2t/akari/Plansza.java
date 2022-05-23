@@ -89,7 +89,32 @@ public class Plansza {
                 if (Objects.equals(pole.getStan(), "b")) {
                     if (e.getButton() == MouseEvent.BUTTON1  /*lewy*/) {
                         pole.zmienStan("z");
-                     //   Pole poleZNastepnejKolumny = getPole(pole.getWiersz(), (pole.getKolumna())+1);
+                        for(int i = 1; i<(rozmiar - pole.getKolumna()); i++){
+                            Pole poleZNastepnejKolumny = getPole(pole.getWiersz(), (pole.getKolumna())+i);
+                            if (Objects.equals(poleZNastepnejKolumny.getStan(), "c")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "0")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "1")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "2")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "3")){
+                                break;
+                            }
+                            else{
+                                poleZNastepnejKolumny.zmienStan("p");
+                            }
+                        }
+                        for(int i = (pole.getKolumna()-1); i>=0; i--){
+                            Pole poleZPoprzedniejKolumny = getPole(pole.getWiersz(), (i));
+                            if (Objects.equals(poleZPoprzedniejKolumny.getStan(), "c")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "0")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "1")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "2")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "3")){
+                                break;
+                            }
+                            else{
+                                poleZPoprzedniejKolumny.zmienStan("p");
+                            }
+                        }
                     } else if (e.getButton() == MouseEvent.BUTTON3  /*prawy*/) {
                         pole.zmienStan("x");
                     }
