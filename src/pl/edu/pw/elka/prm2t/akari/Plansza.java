@@ -115,6 +115,38 @@ public class Plansza {
                                 poleZPoprzedniejKolumny.zmienStan("p");
                             }
                         }
+                        for(int i = (pole.getWiersz()-1); i>=0; i--){
+                            Pole poleZPoprzedniegoWiersza = getPole(i, (pole.getKolumna()));
+                            if (Objects.equals(poleZPoprzedniegoWiersza.getStan(), "c")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "0")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "1")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "2")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "3")){
+                                break;
+                            }
+                            else if(Objects.equals(poleZPoprzedniegoWiersza.getStan(), "z")){
+                                continue;
+                            }
+                            else{
+                                poleZPoprzedniegoWiersza.zmienStan("p");
+                            }
+                        }
+                        for(int i = 1; i<(rozmiar - pole.getWiersz()); i++){
+                            Pole poleZNastepengoWiersza = getPole((pole.getWiersz()+i), (pole.getKolumna()));
+                            if (Objects.equals(poleZNastepengoWiersza.getStan(), "c")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "0")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "1")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "2")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "3")){
+                                break;
+                            }
+                            else if(Objects.equals(poleZNastepengoWiersza.getStan(), "z")){
+                                continue;
+                            }
+                            else{
+                                poleZNastepengoWiersza.zmienStan("p");
+                            }
+                        }
                     } else if (e.getButton() == MouseEvent.BUTTON3  /*prawy*/) {
                         pole.zmienStan("x");
                     }
