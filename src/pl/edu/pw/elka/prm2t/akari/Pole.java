@@ -59,6 +59,11 @@ public class Pole extends JButton {
             this.setBackground(Color.YELLOW);
             this.setText("");
         }
+        if (Objects.equals(this.stan, "xp")) {
+            this.setBackground(Color.YELLOW);
+            this.setForeground(Color.BLACK);
+            this.setText("x");
+        }
     }
 
     public int getWiersz() {

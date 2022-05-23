@@ -98,6 +98,9 @@ public class Plansza {
                                     Objects.equals(poleZNastepnejKolumny.getStan(), "3")){
                                 break;
                             }
+                            if(Objects.equals(poleZNastepnejKolumny.getStan(), "x")){
+                                poleZNastepnejKolumny.zmienStan("xp");
+                            }
                             else{
                                 poleZNastepnejKolumny.zmienStan("p");
                             }
@@ -111,6 +114,9 @@ public class Plansza {
                                     Objects.equals(poleZPoprzedniejKolumny.getStan(), "3")){
                                 break;
                             }
+                            if(Objects.equals(poleZPoprzedniejKolumny.getStan(), "x")) {
+                                poleZPoprzedniejKolumny.zmienStan("xp");
+                            }
                             else{
                                 poleZPoprzedniejKolumny.zmienStan("p");
                             }
@@ -123,6 +129,9 @@ public class Plansza {
                                     Objects.equals(poleZPoprzedniegoWiersza.getStan(), "2")||
                                     Objects.equals(poleZPoprzedniegoWiersza.getStan(), "3")){
                                 break;
+                            }
+                            if(Objects.equals(poleZPoprzedniegoWiersza.getStan(), "x")) {
+                                poleZPoprzedniegoWiersza.zmienStan("xp");
                             }
                             else if(Objects.equals(poleZPoprzedniegoWiersza.getStan(), "z")){
                                 continue;
@@ -139,6 +148,9 @@ public class Plansza {
                                     Objects.equals(poleZNastepengoWiersza.getStan(), "2")||
                                     Objects.equals(poleZNastepengoWiersza.getStan(), "3")){
                                 break;
+                            }
+                            if(Objects.equals(poleZNastepengoWiersza.getStan(), "x")) {
+                                poleZNastepengoWiersza.zmienStan("xp");
                             }
                             else if(Objects.equals(poleZNastepengoWiersza.getStan(), "z")){
                                 continue;
