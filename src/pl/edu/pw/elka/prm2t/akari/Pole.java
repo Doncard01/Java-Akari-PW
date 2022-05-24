@@ -13,7 +13,7 @@ public class Pole extends JButton {
     private final int wiersz;
     private final int kolumna;
     private String stan;
-
+    private int oswietlenie;
 
     public Pole(int wiersz, int kolumna, String stanPoczatkowy) {
         super();
@@ -22,7 +22,7 @@ public class Pole extends JButton {
         this.setMargin(new Insets(0, 0, 0, 0));
         this.setFont(new Font("Dialog", Font.PLAIN, 16));
         zmienStan(stanPoczatkowy);
-
+        ustawPoczatkoweOswietlenie(stanPoczatkowy);
 
     }
 
@@ -30,26 +30,6 @@ public class Pole extends JButton {
         this.stan = stan;
 
         if (Objects.equals(this.stan, "z")) {
-            this.setBackground(Color.YELLOW);
-            this.setForeground(Color.red);
-            this.setText("\uD83D\uDCA1");
-        }
-        if (Objects.equals(this.stan, "z1")) {
-            this.setBackground(Color.YELLOW);
-            this.setForeground(Color.red);
-            this.setText("\uD83D\uDCA1");
-        }
-        if (Objects.equals(this.stan, "z2")) {
-            this.setBackground(Color.YELLOW);
-            this.setForeground(Color.red);
-            this.setText("\uD83D\uDCA1");
-        }
-        if (Objects.equals(this.stan, "z3")) {
-            this.setBackground(Color.YELLOW);
-            this.setForeground(Color.red);
-            this.setText("\uD83D\uDCA1");
-        }
-        if (Objects.equals(this.stan, "z4")) {
             this.setBackground(Color.YELLOW);
             this.setForeground(Color.red);
             this.setText("\uD83D\uDCA1");
@@ -76,42 +56,40 @@ public class Pole extends JButton {
             this.setForeground(Color.BLACK);
             this.setText("x");
         }
-        if (Objects.equals(this.stan, "xp1")) {
+        if (Objects.equals(this.stan, "xp")) {
             this.setBackground(Color.YELLOW);
             this.setForeground(Color.BLACK);
             this.setText("x");
         }
-        if (Objects.equals(this.stan, "xp2")) {
-            this.setBackground(Color.YELLOW);
-            this.setForeground(Color.BLACK);
-            this.setText("x");
-        }
-        if (Objects.equals(this.stan, "xp3")) {
-            this.setBackground(Color.YELLOW);
-            this.setForeground(Color.BLACK);
-            this.setText("x");
-        }
-        if (Objects.equals(this.stan, "xp4")) {
-            this.setBackground(Color.YELLOW);
-            this.setForeground(Color.BLACK);
-            this.setText("x");
-        }
-        if (Objects.equals(this.stan, "p1")) {
+        if (Objects.equals(this.stan, "p")) {
             this.setBackground(Color.YELLOW);
             this.setText("");
         }
-        if (Objects.equals(this.stan, "p2")) {
-            this.setBackground(Color.YELLOW);
-            this.setText("");
+    }
+    public void ustawPoczatkoweOswietlenie(String stan){
+        this.stan = stan;
+
+        if (Objects.equals(this.stan, "p")) {
+            oswietlenie = 1;
         }
-        if (Objects.equals(this.stan, "p3")) {
-            this.setBackground(Color.YELLOW);
-            this.setText("");
+        if (Objects.equals(this.stan, "b")) {
+            oswietlenie = 0;
         }
-        if (Objects.equals(this.stan, "p4")) {
-            this.setBackground(Color.YELLOW);
-            this.setText("");
+        if (Objects.equals(this.stan, "x")) {
+            oswietlenie = 0;
         }
+        if (Objects.equals(this.stan, "xp")) {
+            oswietlenie = 1;
+        }
+        if (Objects.equals(this.stan, "z")) {
+            oswietlenie = 0;
+        }
+    }
+    public void zwiekszOswietlenie(){
+        oswietlenie = oswietlenie + 1;
+    }
+    public void zmniejszOswietlenie(){
+        oswietlenie = oswietlenie - 1;
     }
 
 
@@ -126,5 +104,7 @@ public class Pole extends JButton {
     public String getStan() {
         return stan;
     }
+
+    public int getOswietlenie(){return oswietlenie;}
 
 }
