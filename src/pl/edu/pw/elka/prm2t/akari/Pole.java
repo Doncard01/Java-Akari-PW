@@ -22,8 +22,10 @@ public class Pole extends JButton {
         this.setMargin(new Insets(0, 0, 0, 0));
         this.setFont(new Font("Dialog", Font.PLAIN, 16));
         zmienStan(stanPoczatkowy);
-        ustawPoczatkoweOswietlenie(stanPoczatkowy);
 
+    }
+    public void setOswietlenie(int noweOswietlenie){
+        oswietlenie = noweOswietlenie;
     }
 
     public void zmienStan(String stan) {
@@ -33,10 +35,12 @@ public class Pole extends JButton {
             this.setBackground(Color.YELLOW);
             this.setForeground(Color.red);
             this.setText("\uD83D\uDCA1");
+            this.setOswietlenie(0);
         }
         if (Objects.equals(this.stan, "b")) {
             this.setBackground(Color.WHITE);
             this.setText("");
+            this.setOswietlenie(0);
         }
         if (Objects.equals(this.stan, "c")) {
             this.setBackground(Color.BLACK);
@@ -55,41 +59,25 @@ public class Pole extends JButton {
             this.setBackground(Color.WHITE);
             this.setForeground(Color.BLACK);
             this.setText("x");
+            this.setOswietlenie(0);
         }
         if (Objects.equals(this.stan, "xp")) {
             this.setBackground(Color.YELLOW);
             this.setForeground(Color.BLACK);
             this.setText("x");
+            this.setOswietlenie(1);
         }
         if (Objects.equals(this.stan, "p")) {
             this.setBackground(Color.YELLOW);
             this.setText("");
+            this.setOswietlenie(1);
         }
     }
-    public void ustawPoczatkoweOswietlenie(String stan){
-        this.stan = stan;
-
-        if (Objects.equals(this.stan, "p")) {
-            oswietlenie = 1;
-        }
-        if (Objects.equals(this.stan, "b")) {
-            oswietlenie = 0;
-        }
-        if (Objects.equals(this.stan, "x")) {
-            oswietlenie = 0;
-        }
-        if (Objects.equals(this.stan, "xp")) {
-            oswietlenie = 1;
-        }
-        if (Objects.equals(this.stan, "z")) {
-            oswietlenie = 0;
-        }
+    public void zwiekszOswietlenie(int oswietlenie){
+        this.setOswietlenie(oswietlenie+1);
     }
-    public void zwiekszOswietlenie(){
-        oswietlenie = oswietlenie + 1;
-    }
-    public void zmniejszOswietlenie(){
-        oswietlenie = oswietlenie - 1;
+    public void zmniejszOswietlenie(int oswietlenie){
+        this.setOswietlenie(oswietlenie-1);
     }
 
 

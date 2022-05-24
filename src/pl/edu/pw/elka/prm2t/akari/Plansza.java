@@ -109,7 +109,7 @@ public class Plansza {
                                 case "z":
                                 case "p":
                                 case "xp":
-                                    poleZNastepnejKolumny.zwiekszOswietlenie();
+                                    poleZNastepnejKolumny.zwiekszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
                                     break;
                             }
                         }
@@ -132,7 +132,7 @@ public class Plansza {
                                 case "z":
                                 case "p":
                                 case "xp":
-                                    poleZPoprzedniejKolumny.zwiekszOswietlenie();
+                                    poleZPoprzedniejKolumny.zwiekszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
                                     break;
                             }
                         }
@@ -155,7 +155,7 @@ public class Plansza {
                                 case "z":
                                 case "p":
                                 case "xp":
-                                    poleZPoprzedniegoWiersza.zwiekszOswietlenie();
+                                    poleZPoprzedniegoWiersza.zwiekszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
                                     break;
                             }
                         }
@@ -178,7 +178,7 @@ public class Plansza {
                                 case "z":
                                 case "p":
                                 case "xp":
-                                    poleZNastepengoWiersza.zwiekszOswietlenie();
+                                    poleZNastepengoWiersza.zwiekszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
                                     break;
                             }
                         }
@@ -193,7 +193,9 @@ public class Plansza {
                 /*włączanie żarówki z oświetlonego pola lub oświetlonego xp*/
                 else if (Objects.equals(pole.getStan(), "p") || Objects.equals(pole.getStan(), "xp")) {
                     if (e.getButton() == MouseEvent.BUTTON1  /*lewy*/) {
+                        int x = pole.getOswietlenie();
                         pole.zmienStan("z");
+                        pole.setOswietlenie(x);
                         for(int i = 1; i<(rozmiar - pole.getKolumna()); i++){
                             Pole poleZNastepnejKolumny = getPole(pole.getWiersz(), (pole.getKolumna())+i);
                             if (Objects.equals(poleZNastepnejKolumny.getStan(), "c")||
@@ -213,7 +215,7 @@ public class Plansza {
                                 case "z":
                                 case "p":
                                 case "xp":
-                                    poleZNastepnejKolumny.zwiekszOswietlenie();
+                                    poleZNastepnejKolumny.zwiekszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
                                     break;
                             }
                         }
@@ -236,7 +238,7 @@ public class Plansza {
                                 case "z":
                                 case "p":
                                 case "xp":
-                                    poleZPoprzedniejKolumny.zwiekszOswietlenie();
+                                    poleZPoprzedniejKolumny.zwiekszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
                                     break;
                             }
                         }
@@ -259,7 +261,7 @@ public class Plansza {
                                 case "z":
                                 case "p":
                                 case "xp":
-                                    poleZPoprzedniegoWiersza.zwiekszOswietlenie();
+                                    poleZPoprzedniegoWiersza.zwiekszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
                                     break;
                             }
                         }
@@ -282,21 +284,24 @@ public class Plansza {
                                 case "z":
                                 case "p":
                                 case "xp":
-                                    poleZNastepengoWiersza.zwiekszOswietlenie();
+                                    poleZNastepengoWiersza.zwiekszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
                                     break;
                             }
                         }
                     }
                     else if (e.getButton() == MouseEvent.BUTTON3 && Objects.equals(pole.getStan(), "p")  /*prawy*/) {
+                        int x = pole.getOswietlenie();
                         pole.zmienStan("xp");
+                        pole.setOswietlenie(x);
                     }
                     else if (e.getButton() == MouseEvent.BUTTON3 && Objects.equals(pole.getStan(), "xp")  /*prawy*/) {
+                        int x = pole.getOswietlenie();
                         pole.zmienStan("p");
-
+                        pole.setOswietlenie(x);
                     }
                 }
                 /*wyłączanie żarówki na białe pole*/
-                else if (Objects.equals(pole.getStan(), "z")) {
+                else if (Objects.equals(pole.getStan(), "z") && pole.getOswietlenie() == 0) {
                     if (e.getButton() == MouseEvent.BUTTON1  /*lewy*/) {
                         pole.zmienStan("b");
                         for(int i = 1; i<(rozmiar - pole.getKolumna()); i++){
@@ -314,19 +319,19 @@ public class Plansza {
                                         poleZNastepnejKolumny.zmienStan("x");
                                     }
                                     else {
-                                        poleZNastepnejKolumny.zmniejszOswietlenie();
+                                        poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
                                     }
                                     break;
                                 case "p":
                                     if (poleZNastepnejKolumny.getOswietlenie() > 1) {
-                                        poleZNastepnejKolumny.zmniejszOswietlenie();
+                                        poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
                                     }
                                     else {
                                         poleZNastepnejKolumny.zmienStan("b");
                                     }
                                     break;
                                 case "z":
-                                    poleZNastepnejKolumny.zmniejszOswietlenie();
+                                    poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
                                     break;
 
                             }
@@ -346,19 +351,19 @@ public class Plansza {
                                         poleZPoprzedniejKolumny.zmienStan("x");
                                     }
                                     else {
-                                        poleZPoprzedniejKolumny.zmniejszOswietlenie();
+                                        poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
                                     }
                                     break;
                                 case "p":
                                     if (poleZPoprzedniejKolumny.getOswietlenie() > 1) {
-                                        poleZPoprzedniejKolumny.zmniejszOswietlenie();
+                                        poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
                                     }
                                     else {
                                         poleZPoprzedniejKolumny.zmienStan("b");
                                     }
                                     break;
                                 case "z":
-                                    poleZPoprzedniejKolumny.zmniejszOswietlenie();
+                                    poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
                                     break;
 
                             }
@@ -378,19 +383,19 @@ public class Plansza {
                                         poleZPoprzedniegoWiersza.zmienStan("x");
                                     }
                                     else {
-                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie();
+                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
                                     }
                                     break;
                                 case "p":
                                     if (poleZPoprzedniegoWiersza.getOswietlenie() > 1) {
-                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie();
+                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
                                     }
                                     else {
                                         poleZPoprzedniegoWiersza.zmienStan("b");
                                     }
                                     break;
                                 case "z":
-                                    poleZPoprzedniegoWiersza.zmniejszOswietlenie();
+                                    poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
                                     break;
 
                             }
@@ -410,26 +415,26 @@ public class Plansza {
                                         poleZNastepengoWiersza.zmienStan("x");
                                     }
                                     else {
-                                        poleZNastepengoWiersza.zmniejszOswietlenie();
+                                        poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
                                     }
                                     break;
                                 case "p":
                                     if (poleZNastepengoWiersza.getOswietlenie() > 1) {
-                                        poleZNastepengoWiersza.zmniejszOswietlenie();
+                                        poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
                                     }
                                     else {
                                         poleZNastepengoWiersza.zmienStan("b");
                                     }
                                     break;
                                 case "z":
-                                    poleZNastepengoWiersza.zmniejszOswietlenie();
+                                    poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
                                     break;
 
                             }
                         }
                     }
                     /*wyłączanie żarówki na pole x*/
-                    else if (e.getButton() == MouseEvent.BUTTON3  /*prawy*/) {
+                    else if (e.getButton() == MouseEvent.BUTTON3  && pole.getOswietlenie() == 0/*prawy*/) {
                         pole.zmienStan("x");
                         for(int i = 1; i<(rozmiar - pole.getKolumna()); i++){
                             Pole poleZNastepnejKolumny = getPole(pole.getWiersz(), (pole.getKolumna())+i);
@@ -446,19 +451,19 @@ public class Plansza {
                                         poleZNastepnejKolumny.zmienStan("x");
                                     }
                                     else {
-                                        poleZNastepnejKolumny.zmniejszOswietlenie();
+                                        poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
                                     }
                                     break;
                                 case "p":
                                     if (poleZNastepnejKolumny.getOswietlenie() > 1) {
-                                        poleZNastepnejKolumny.zmniejszOswietlenie();
+                                        poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
                                     }
                                     else {
                                         poleZNastepnejKolumny.zmienStan("b");
                                     }
                                     break;
                                 case "z":
-                                    poleZNastepnejKolumny.zmniejszOswietlenie();
+                                    poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
                                     break;
 
                             }
@@ -478,19 +483,19 @@ public class Plansza {
                                         poleZPoprzedniejKolumny.zmienStan("x");
                                     }
                                     else {
-                                        poleZPoprzedniejKolumny.zmniejszOswietlenie();
+                                        poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
                                     }
                                     break;
                                 case "p":
                                     if (poleZPoprzedniejKolumny.getOswietlenie() > 1) {
-                                        poleZPoprzedniejKolumny.zmniejszOswietlenie();
+                                        poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
                                     }
                                     else {
                                         poleZPoprzedniejKolumny.zmienStan("b");
                                     }
                                     break;
                                 case "z":
-                                    poleZPoprzedniejKolumny.zmniejszOswietlenie();
+                                    poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
                                     break;
 
                             }
@@ -510,19 +515,19 @@ public class Plansza {
                                         poleZPoprzedniegoWiersza.zmienStan("x");
                                     }
                                     else {
-                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie();
+                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
                                     }
                                     break;
                                 case "p":
                                     if (poleZPoprzedniegoWiersza.getOswietlenie() > 1) {
-                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie();
+                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
                                     }
                                     else {
                                         poleZPoprzedniegoWiersza.zmienStan("b");
                                     }
                                     break;
                                 case "z":
-                                    poleZPoprzedniegoWiersza.zmniejszOswietlenie();
+                                    poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
                                     break;
 
                             }
@@ -542,19 +547,289 @@ public class Plansza {
                                         poleZNastepengoWiersza.zmienStan("x");
                                     }
                                     else {
-                                        poleZNastepengoWiersza.zmniejszOswietlenie();
+                                        poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
                                     }
                                     break;
                                 case "p":
                                     if (poleZNastepengoWiersza.getOswietlenie() > 1) {
-                                        poleZNastepengoWiersza.zmniejszOswietlenie();
+                                        poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
                                     }
                                     else {
                                         poleZNastepengoWiersza.zmienStan("b");
                                     }
                                     break;
                                 case "z":
-                                    poleZNastepengoWiersza.zmniejszOswietlenie();
+                                    poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
+                                    break;
+
+                            }
+                        }
+                    }
+                }
+                /*wyłączanie żarówki na pole oświetlone*/
+                else if (Objects.equals(pole.getStan(), "z") && pole.getOswietlenie() > 0) {
+                    if (e.getButton() == MouseEvent.BUTTON1  /*lewy*/) {
+                        int x = pole.getOswietlenie();
+                        pole.zmienStan("p");
+                        pole.setOswietlenie(x);
+                        for(int i = 1; i<(rozmiar - pole.getKolumna()); i++){
+                            Pole poleZNastepnejKolumny = getPole(pole.getWiersz(), (pole.getKolumna())+i);
+                            if (Objects.equals(poleZNastepnejKolumny.getStan(), "c")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "0")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "1")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "2")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "3")){
+                                break;
+                            }
+                            switch (poleZNastepnejKolumny.getStan()) {
+                                case "xp":
+                                    if (poleZNastepnejKolumny.getOswietlenie() == 1) {
+                                        poleZNastepnejKolumny.zmienStan("x");
+                                    }
+                                    else {
+                                        poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
+                                    }
+                                    break;
+                                case "p":
+                                    if (poleZNastepnejKolumny.getOswietlenie() > 1) {
+                                        poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
+                                    }
+                                    else {
+                                        poleZNastepnejKolumny.zmienStan("b");
+                                    }
+                                    break;
+                                case "z":
+                                    poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
+                                    break;
+
+                            }
+                        }
+                        for(int i = (pole.getKolumna()-1); i>=0; i--){
+                            Pole poleZPoprzedniejKolumny = getPole(pole.getWiersz(), (i));
+                            if (Objects.equals(poleZPoprzedniejKolumny.getStan(), "c")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "0")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "1")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "2")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "3")){
+                                break;
+                            }
+                            switch (poleZPoprzedniejKolumny.getStan()) {
+                                case "xp":
+                                    if (poleZPoprzedniejKolumny.getOswietlenie() == 1) {
+                                        poleZPoprzedniejKolumny.zmienStan("x");
+                                    }
+                                    else {
+                                        poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
+                                    }
+                                    break;
+                                case "p":
+                                    if (poleZPoprzedniejKolumny.getOswietlenie() > 1) {
+                                        poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
+                                    }
+                                    else {
+                                        poleZPoprzedniejKolumny.zmienStan("b");
+                                    }
+                                    break;
+                                case "z":
+                                    poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
+                                    break;
+
+                            }
+                        }
+                        for(int i = (pole.getWiersz()-1); i>=0; i--){
+                            Pole poleZPoprzedniegoWiersza = getPole(i, (pole.getKolumna()));
+                            if (Objects.equals(poleZPoprzedniegoWiersza.getStan(), "c")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "0")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "1")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "2")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "3")){
+                                break;
+                            }
+                            switch (poleZPoprzedniegoWiersza.getStan()) {
+                                case "xp":
+                                    if (poleZPoprzedniegoWiersza.getOswietlenie() == 1) {
+                                        poleZPoprzedniegoWiersza.zmienStan("x");
+                                    }
+                                    else {
+                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
+                                    }
+                                    break;
+                                case "p":
+                                    if (poleZPoprzedniegoWiersza.getOswietlenie() > 1) {
+                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
+                                    }
+                                    else {
+                                        poleZPoprzedniegoWiersza.zmienStan("b");
+                                    }
+                                    break;
+                                case "z":
+                                    poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
+                                    break;
+
+                            }
+                        }
+                        for(int i = 1; i<(rozmiar - pole.getWiersz()); i++){
+                            Pole poleZNastepengoWiersza = getPole((pole.getWiersz()+i), (pole.getKolumna()));
+                            if (Objects.equals(poleZNastepengoWiersza.getStan(), "c")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "0")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "1")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "2")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "3")){
+                                break;
+                            }
+                            switch (poleZNastepengoWiersza.getStan()) {
+                                case "xp":
+                                    if (poleZNastepengoWiersza.getOswietlenie() == 1) {
+                                        poleZNastepengoWiersza.zmienStan("x");
+                                    }
+                                    else {
+                                        poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
+                                    }
+                                    break;
+                                case "p":
+                                    if (poleZNastepengoWiersza.getOswietlenie() > 1) {
+                                        poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
+                                    }
+                                    else {
+                                        poleZNastepengoWiersza.zmienStan("b");
+                                    }
+                                    break;
+                                case "z":
+                                    poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
+                                    break;
+
+                            }
+                        }
+                    }
+                    /*wyłączanie żarówki na pole oświetlone xp*/
+                    else if (e.getButton() == MouseEvent.BUTTON3  && pole.getOswietlenie() > 0 /*prawy*/) {
+                        int x = pole.getOswietlenie();
+                        pole.zmienStan("xp");
+                        pole.setOswietlenie(x);
+                        for(int i = 1; i<(rozmiar - pole.getKolumna()); i++){
+                            Pole poleZNastepnejKolumny = getPole(pole.getWiersz(), (pole.getKolumna())+i);
+                            if (Objects.equals(poleZNastepnejKolumny.getStan(), "c")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "0")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "1")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "2")||
+                                    Objects.equals(poleZNastepnejKolumny.getStan(), "3")){
+                                break;
+                            }
+                            switch (poleZNastepnejKolumny.getStan()) {
+                                case "xp":
+                                    if (poleZNastepnejKolumny.getOswietlenie() == 1) {
+                                        poleZNastepnejKolumny.zmienStan("x");
+                                    }
+                                    else {
+                                        poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
+                                    }
+                                    break;
+                                case "p":
+                                    if (poleZNastepnejKolumny.getOswietlenie() > 1) {
+                                        poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
+                                    }
+                                    else {
+                                        poleZNastepnejKolumny.zmienStan("b");
+                                    }
+                                    break;
+                                case "z":
+                                    poleZNastepnejKolumny.zmniejszOswietlenie(poleZNastepnejKolumny.getOswietlenie());
+                                    break;
+
+                            }
+                        }
+                        for(int i = (pole.getKolumna()-1); i>=0; i--){
+                            Pole poleZPoprzedniejKolumny = getPole(pole.getWiersz(), (i));
+                            if (Objects.equals(poleZPoprzedniejKolumny.getStan(), "c")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "0")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "1")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "2")||
+                                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "3")){
+                                break;
+                            }
+                            switch (poleZPoprzedniejKolumny.getStan()) {
+                                case "xp":
+                                    if (poleZPoprzedniejKolumny.getOswietlenie() == 1) {
+                                        poleZPoprzedniejKolumny.zmienStan("x");
+                                    }
+                                    else {
+                                        poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
+                                    }
+                                    break;
+                                case "p":
+                                    if (poleZPoprzedniejKolumny.getOswietlenie() > 1) {
+                                        poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
+                                    }
+                                    else {
+                                        poleZPoprzedniejKolumny.zmienStan("b");
+                                    }
+                                    break;
+                                case "z":
+                                    poleZPoprzedniejKolumny.zmniejszOswietlenie(poleZPoprzedniejKolumny.getOswietlenie());
+                                    break;
+
+                            }
+                        }
+                        for(int i = (pole.getWiersz()-1); i>=0; i--){
+                            Pole poleZPoprzedniegoWiersza = getPole(i, (pole.getKolumna()));
+                            if (Objects.equals(poleZPoprzedniegoWiersza.getStan(), "c")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "0")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "1")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "2")||
+                                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "3")){
+                                break;
+                            }
+                            switch (poleZPoprzedniegoWiersza.getStan()) {
+                                case "xp":
+                                    if (poleZPoprzedniegoWiersza.getOswietlenie() == 1) {
+                                        poleZPoprzedniegoWiersza.zmienStan("x");
+                                    }
+                                    else {
+                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
+                                    }
+                                    break;
+                                case "p":
+                                    if (poleZPoprzedniegoWiersza.getOswietlenie() > 1) {
+                                        poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
+                                    }
+                                    else {
+                                        poleZPoprzedniegoWiersza.zmienStan("b");
+                                    }
+                                    break;
+                                case "z":
+                                    poleZPoprzedniegoWiersza.zmniejszOswietlenie(poleZPoprzedniegoWiersza.getOswietlenie());
+                                    break;
+
+                            }
+                        }
+                        for(int i = 1; i<(rozmiar - pole.getWiersz()); i++){
+                            Pole poleZNastepengoWiersza = getPole((pole.getWiersz()+i), (pole.getKolumna()));
+                            if (Objects.equals(poleZNastepengoWiersza.getStan(), "c")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "0")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "1")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "2")||
+                                    Objects.equals(poleZNastepengoWiersza.getStan(), "3")){
+                                break;
+                            }
+                            switch (poleZNastepengoWiersza.getStan()) {
+                                case "xp":
+                                    if (poleZNastepengoWiersza.getOswietlenie() == 1) {
+                                        poleZNastepengoWiersza.zmienStan("x");
+                                    }
+                                    else {
+                                        poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
+                                    }
+                                    break;
+                                case "p":
+                                    if (poleZNastepengoWiersza.getOswietlenie() > 1) {
+                                        poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
+                                    }
+                                    else {
+                                        poleZNastepengoWiersza.zmienStan("b");
+                                    }
+                                    break;
+                                case "z":
+                                    poleZNastepengoWiersza.zmniejszOswietlenie(poleZNastepengoWiersza.getOswietlenie());
                                     break;
 
                             }
