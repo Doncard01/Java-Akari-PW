@@ -14,6 +14,7 @@ public class Pole extends JButton {
     private final int kolumna;
     private String stan;
 
+
     public Pole(int wiersz, int kolumna, String stanPoczatkowy) {
         super();
         this.wiersz = wiersz;
@@ -29,6 +30,26 @@ public class Pole extends JButton {
         this.stan = stan;
 
         if (Objects.equals(this.stan, "z")) {
+            this.setBackground(Color.YELLOW);
+            this.setForeground(Color.red);
+            this.setText("\uD83D\uDCA1");
+        }
+        if (Objects.equals(this.stan, "z1")) {
+            this.setBackground(Color.YELLOW);
+            this.setForeground(Color.red);
+            this.setText("\uD83D\uDCA1");
+        }
+        if (Objects.equals(this.stan, "z2")) {
+            this.setBackground(Color.YELLOW);
+            this.setForeground(Color.red);
+            this.setText("\uD83D\uDCA1");
+        }
+        if (Objects.equals(this.stan, "z3")) {
+            this.setBackground(Color.YELLOW);
+            this.setForeground(Color.red);
+            this.setText("\uD83D\uDCA1");
+        }
+        if (Objects.equals(this.stan, "z4")) {
             this.setBackground(Color.YELLOW);
             this.setForeground(Color.red);
             this.setText("\uD83D\uDCA1");
@@ -55,16 +76,44 @@ public class Pole extends JButton {
             this.setForeground(Color.BLACK);
             this.setText("x");
         }
-        if (Objects.equals(this.stan, "p")) {
-            this.setBackground(Color.YELLOW);
-            this.setText("");
-        }
-        if (Objects.equals(this.stan, "xp")) {
+        if (Objects.equals(this.stan, "xp1")) {
             this.setBackground(Color.YELLOW);
             this.setForeground(Color.BLACK);
             this.setText("x");
         }
+        if (Objects.equals(this.stan, "xp2")) {
+            this.setBackground(Color.YELLOW);
+            this.setForeground(Color.BLACK);
+            this.setText("x");
+        }
+        if (Objects.equals(this.stan, "xp3")) {
+            this.setBackground(Color.YELLOW);
+            this.setForeground(Color.BLACK);
+            this.setText("x");
+        }
+        if (Objects.equals(this.stan, "xp4")) {
+            this.setBackground(Color.YELLOW);
+            this.setForeground(Color.BLACK);
+            this.setText("x");
+        }
+        if (Objects.equals(this.stan, "p1")) {
+            this.setBackground(Color.YELLOW);
+            this.setText("");
+        }
+        if (Objects.equals(this.stan, "p2")) {
+            this.setBackground(Color.YELLOW);
+            this.setText("");
+        }
+        if (Objects.equals(this.stan, "p3")) {
+            this.setBackground(Color.YELLOW);
+            this.setText("");
+        }
+        if (Objects.equals(this.stan, "p4")) {
+            this.setBackground(Color.YELLOW);
+            this.setText("");
+        }
     }
+
 
     public int getWiersz() {
         return wiersz;
@@ -77,4 +126,5 @@ public class Pole extends JButton {
     public String getStan() {
         return stan;
     }
+
 }
