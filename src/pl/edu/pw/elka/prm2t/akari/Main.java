@@ -46,6 +46,7 @@ public class Main {
 
         JButton nowaGra = new JButton("Nowa gra");
         nowaGra.addActionListener(e->{
+            closeFrame(frame);
 
             panelwyboru.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
             panelwyboru.setLayout(new GridLayout(5,1,20,20));
@@ -67,7 +68,8 @@ public class Main {
                 frame.getContentPane().removeAll();
                 frame.getContentPane().add(panelPlanszy);
                 frame.revalidate();
-                ramkawyboru.hide();
+                closeFrame(ramkawyboru);
+                openFrame(frame);
             });
             mid.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(2);
@@ -76,7 +78,8 @@ public class Main {
                 frame.getContentPane().removeAll();
                 frame.getContentPane().add(panelPlanszy);
                 frame.revalidate();
-                ramkawyboru.hide();
+                closeFrame(ramkawyboru);
+                openFrame(frame);
             });
             hard.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(3);
@@ -85,7 +88,8 @@ public class Main {
                 frame.getContentPane().removeAll();
                 frame.getContentPane().add(panelPlanszy);
                 frame.revalidate();
-                ramkawyboru.hide();
+                closeFrame(ramkawyboru);
+                openFrame(frame);
             });
         });
 
