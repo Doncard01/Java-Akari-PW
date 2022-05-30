@@ -3,6 +3,8 @@ package pl.edu.pw.elka.prm2t.akari;
 import javax.swing.*;
 import java.awt.*;
 
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
 public class Main {
 
     public void openFrame(JFrame frame) {
@@ -27,22 +29,64 @@ public class Main {
         JLabel label4 = new JLabel("Radosław Szawłowski", SwingConstants.CENTER);
         JLabel label5 = new JLabel("Adam Staciwa", SwingConstants.CENTER);
 
+        JLabel label6 = new JLabel("Wybierz poziom trudności", SwingConstants.CENTER);
+
         JFrame frame = new JFrame();
         JFrame frame2 = new JFrame();
+        JFrame ramkawyboru = new JFrame();
 
         JPanel panel = new JPanel();
         JPanel panelBot = new JPanel();
         JPanel panel2 = new JPanel();
+        JPanel panelwyboru = new JPanel();
+
+        JButton easy = new JButton("Poziom łatwy");
+        JButton mid = new JButton("Poziom średni");
+        JButton hard = new JButton("Poziom trudny");
 
         JButton nowaGra = new JButton("Nowa gra");
         nowaGra.addActionListener(e->{
 
-            Plansza plansza = new Plansza(3);
-            JPanel panelPlanszy = plansza.generujPlansze();
-            plansza.wypisanieNaKonsole();
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(panelPlanszy);
-            frame.revalidate();
+            panelwyboru.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+            panelwyboru.setLayout(new GridLayout(5,1,20,20));
+            panelwyboru.add(label6);
+            panelwyboru.add(easy);
+            panelwyboru.add(mid);
+            panelwyboru.add(hard);
+
+            ramkawyboru.add(panelwyboru);
+            ramkawyboru.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            ramkawyboru.setTitle("Wybór poziomu trudności");
+            ramkawyboru.setSize(600,600);
+            ramkawyboru.setVisible(true);
+
+            easy.addActionListener(e1 -> {
+                Plansza plansza = new Plansza(1);
+                JPanel panelPlanszy = plansza.generujPlansze();
+                plansza.wypisanieNaKonsole();
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(panelPlanszy);
+                frame.revalidate();
+                ramkawyboru.hide();
+            });
+            mid.addActionListener(e1 -> {
+                Plansza plansza = new Plansza(2);
+                JPanel panelPlanszy = plansza.generujPlansze();
+                plansza.wypisanieNaKonsole();
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(panelPlanszy);
+                frame.revalidate();
+                ramkawyboru.hide();
+            });
+            hard.addActionListener(e1 -> {
+                Plansza plansza = new Plansza(3);
+                JPanel panelPlanszy = plansza.generujPlansze();
+                plansza.wypisanieNaKonsole();
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(panelPlanszy);
+                frame.revalidate();
+                ramkawyboru.hide();
+            });
         });
 
         JButton wczytaj = new JButton("Wczytaj");
@@ -67,7 +111,7 @@ public class Main {
 
 
         frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setTitle("Gra Akari");
         frame.setSize(600, 600);
         openFrame(frame);
