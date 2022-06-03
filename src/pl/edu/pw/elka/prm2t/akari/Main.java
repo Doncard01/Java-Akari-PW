@@ -44,6 +44,21 @@ public class Main {
         JButton mid = new JButton("Poziom średni");
         JButton hard = new JButton("Poziom trudny");
 
+        JButton zapisGry = new JButton("Zapis gry");
+        JButton zapisPNG = new JButton("Zapisz obrazek");
+        JButton hint = new JButton("Hint");
+
+
+        JPanel panelPrzyciskow = new JPanel();
+        panelPrzyciskow.setLayout(new GridLayout(1, 3));
+        panelPrzyciskow.add(zapisGry);
+        panelPrzyciskow.add(zapisPNG);
+        panelPrzyciskow.add(hint);
+
+        JPanel panelPaneli = new JPanel();
+        panelPaneli.setLayout(new BorderLayout());
+        panelPaneli.add(panelPrzyciskow, BorderLayout.PAGE_START);
+
         JButton nowaGra = new JButton("Nowa gra");
         nowaGra.addActionListener(e->{
             closeFrame(frame);
@@ -59,14 +74,18 @@ public class Main {
             ramkawyboru.setDefaultCloseOperation(EXIT_ON_CLOSE);
             ramkawyboru.setTitle("Wybór poziomu trudności");
             ramkawyboru.setSize(600,600);
+            ramkawyboru.setLocationRelativeTo(null);
             ramkawyboru.setVisible(true);
 
             easy.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(1);
                 JPanel panelPlanszy = plansza.generujPlansze();
+                panelPlanszy.setSize(600, 600);
                 plansza.wypisanieNaKonsole();
                 frame.getContentPane().removeAll();
-                frame.getContentPane().add(panelPlanszy);
+                panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
+                frame.getContentPane().add(panelPaneli);
+                frame.setSize(600, 650);
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
@@ -74,9 +93,12 @@ public class Main {
             mid.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(2);
                 JPanel panelPlanszy = plansza.generujPlansze();
+                panelPlanszy.setSize(600, 600);
                 plansza.wypisanieNaKonsole();
                 frame.getContentPane().removeAll();
-                frame.getContentPane().add(panelPlanszy);
+                panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
+                frame.getContentPane().add(panelPaneli);
+                frame.setSize(600, 650);
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
@@ -84,9 +106,12 @@ public class Main {
             hard.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(3);
                 JPanel panelPlanszy = plansza.generujPlansze();
+                panelPlanszy.setSize(600, 600);
                 plansza.wypisanieNaKonsole();
                 frame.getContentPane().removeAll();
-                frame.getContentPane().add(panelPlanszy);
+                panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
+                frame.getContentPane().add(panelPaneli);
+                frame.setSize(600, 650);
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
@@ -118,6 +143,7 @@ public class Main {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setTitle("Gra Akari");
         frame.setSize(600, 600);
+        frame.setLocationRelativeTo(null);
         openFrame(frame);
 
 
