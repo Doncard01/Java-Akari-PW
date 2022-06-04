@@ -33,7 +33,7 @@ public class Pole extends JButton {
 
         if (Objects.equals(this.stan, "z")) {
             this.setBackground(Color.YELLOW);
-            this.setForeground(Color.red);
+            this.setForeground(Color.blue);
             this.setText("\uD83D\uDCA1");
             this.setOswietlenie(0);
         }

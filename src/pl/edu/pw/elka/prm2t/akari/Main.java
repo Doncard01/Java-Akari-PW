@@ -55,6 +55,8 @@ public class Main {
         panelPrzyciskow.add(zapisPNG);
         panelPrzyciskow.add(hint);
 
+
+
         JPanel panelPaneli = new JPanel();
         panelPaneli.setLayout(new BorderLayout());
         panelPaneli.add(panelPrzyciskow, BorderLayout.PAGE_START);
