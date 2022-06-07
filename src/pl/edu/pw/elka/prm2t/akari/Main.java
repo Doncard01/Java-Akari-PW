@@ -47,14 +47,14 @@ public class Main {
         JButton zapisGry = new JButton("Zapis gry");
         JButton zapisPNG = new JButton("Zapisz obrazek");
         JButton hint = new JButton("Hint");
-
+        JButton sprawdzenie = new JButton("Sprawdzenie");
 
         JPanel panelPrzyciskow = new JPanel();
-        panelPrzyciskow.setLayout(new GridLayout(1, 3));
+        panelPrzyciskow.setLayout(new GridLayout(2, 2));
         panelPrzyciskow.add(zapisGry);
         panelPrzyciskow.add(zapisPNG);
         panelPrzyciskow.add(hint);
-
+        panelPrzyciskow.add(sprawdzenie);
 
 
         JPanel panelPaneli = new JPanel();
