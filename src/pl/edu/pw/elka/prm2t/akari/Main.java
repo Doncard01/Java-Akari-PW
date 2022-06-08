@@ -104,7 +104,7 @@ public class Main {
                         String filePath = fileChooser.getSelectedFile().getAbsolutePath();
                         System.out.println("Plik zapisany jako: " + filePath);
 
-                        zapisCSV(filePath, plansza.getRozmiar(), plansza.getPlansza());
+                        zapisTXT(filePath, plansza.getRozmiar(), plansza.getPlansza());
 
                     } else {
                         System.out.println("Plik nie został zapisany");
@@ -132,7 +132,7 @@ public class Main {
                         String filePath = fileChooser.getSelectedFile().getAbsolutePath();
                         System.out.println("Plik zapisany jako: " + filePath);
 
-                        zapisCSV(filePath, plansza.getRozmiar(), plansza.getPlansza());
+                        zapisTXT(filePath, plansza.getRozmiar(), plansza.getPlansza());
 
                     } else {
                         System.out.println("Plik nie został zapisany");
@@ -160,7 +160,7 @@ public class Main {
                         String filePath = fileChooser.getSelectedFile().getAbsolutePath();
                         System.out.println("Plik zapisany jako: " + filePath);
 
-                        zapisCSV(filePath, plansza.getRozmiar(), plansza.getPlansza());
+                        zapisTXT(filePath, plansza.getRozmiar(), plansza.getPlansza());
 
                     } else {
                         System.out.println("Plik nie został zapisany");
@@ -210,7 +210,7 @@ public class Main {
                         String filePath1 = fileChooser1.getSelectedFile().getAbsolutePath();
                         System.out.println("Plik zapisany jako: " + filePath1);
 
-                        zapisCSV(filePath1, plansza.getRozmiar(), plansza.getPlansza());
+                        zapisTXT(filePath1, plansza.getRozmiar(), plansza.getPlansza());
 
                     } else {
                         System.out.println("Plik nie został zapisany");
@@ -248,7 +248,7 @@ public class Main {
 
     }
 
-    public void zapisCSV(String filepath, int rozmiar, Pole[][] plansza) {
+    public void zapisTXT(String filepath, int rozmiar, Pole[][] plansza) {
         try (FileWriter writer = new FileWriter(filepath);) {
             writer.append(String.valueOf(rozmiar)).append("\n");
             for (int i = 0; i < rozmiar; i++) {
