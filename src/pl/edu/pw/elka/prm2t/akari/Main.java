@@ -2,6 +2,9 @@ package pl.edu.pw.elka.prm2t.akari;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -20,7 +23,7 @@ public class Main {
         label.setFont(new Font("defaultFont", Font.PLAIN, 32));
         ImageIcon icon = new ImageIcon("resources/light.png");
         Image temp = icon.getImage();
-        Image temp2 = temp.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
+        Image temp2 = temp.getScaledInstance(70, 70, Image.SCALE_SMOOTH);
         icon = new ImageIcon(temp2);
         label.setIcon(icon);
 
@@ -57,6 +60,7 @@ public class Main {
         panelPrzyciskow.add(sprawdzenie);
 
 
+
         JPanel panelPaneli = new JPanel();
         panelPaneli.setLayout(new BorderLayout());
         panelPaneli.add(panelPrzyciskow, BorderLayout.PAGE_START);
@@ -91,6 +95,21 @@ public class Main {
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
+
+                zapisGry.addActionListener(e2 -> {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz grę");
+                    int userSelection = fileChooser.showSaveDialog(frame);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                        System.out.println("Plik zapisany jako: " + filePath);
+
+                        zapisCSV(filePath, plansza.getRozmiar(), plansza.getPlansza());
+
+                    } else {
+                        System.out.println("Plik nie został zapisany");
+                    }
+                });
             });
             mid.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(2);
@@ -104,6 +123,21 @@ public class Main {
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
+
+                zapisGry.addActionListener(e2 -> {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz grę");
+                    int userSelection = fileChooser.showSaveDialog(frame);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                        System.out.println("Plik zapisany jako: " + filePath);
+
+                        zapisCSV(filePath, plansza.getRozmiar(), plansza.getPlansza());
+
+                    } else {
+                        System.out.println("Plik nie został zapisany");
+                    }
+                });
             });
             hard.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(3);
@@ -117,10 +151,73 @@ public class Main {
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
+
+                zapisGry.addActionListener(e2 -> {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz grę");
+                    int userSelection = fileChooser.showSaveDialog(frame);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                        System.out.println("Plik zapisany jako: " + filePath);
+
+                        zapisCSV(filePath, plansza.getRozmiar(), plansza.getPlansza());
+
+                    } else {
+                        System.out.println("Plik nie został zapisany");
+                    }
+                });
             });
         });
 
         JButton wczytaj = new JButton("Wczytaj");
+        wczytaj.addActionListener(e -> {
+            List<String[]> csv = new ArrayList<>();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Wczytaj grę");
+            int userSelection = fileChooser.showOpenDialog(frame);
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                System.out.println("Wczytany plik: " + filePath);
+
+                try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        String[] values = line.split(" ");
+                        csv.add(values);
+                    }
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+
+
+                Plansza plansza = new Plansza(csv);
+                JPanel panelPlanszy = plansza.generujPlansze();
+                panelPlanszy.setSize(600, 600);
+                plansza.wypisanieNaKonsole();
+                frame.getContentPane().removeAll();
+                panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
+                frame.getContentPane().add(panelPaneli);
+                frame.setSize(600, 650);
+                frame.revalidate();
+                closeFrame(ramkawyboru);
+                openFrame(frame);
+
+                zapisGry.addActionListener(e2 -> {
+                    JFileChooser fileChooser1 = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz grę");
+                    int userSelection1 = fileChooser1.showSaveDialog(frame);
+                    if (userSelection1 == JFileChooser.APPROVE_OPTION) {
+                        String filePath1 = fileChooser1.getSelectedFile().getAbsolutePath();
+                        System.out.println("Plik zapisany jako: " + filePath1);
+
+                        zapisCSV(filePath1, plansza.getRozmiar(), plansza.getPlansza());
+
+                    } else {
+                        System.out.println("Plik nie został zapisany");
+                    }
+                });
+            }
+        });
 
         JButton zamknij = new JButton("Zamknij");
         zamknij.addActionListener(e -> System.exit(1));
@@ -151,8 +248,20 @@ public class Main {
 
     }
 
+    public void zapisCSV(String filepath, int rozmiar, Pole[][] plansza) {
+        try (FileWriter writer = new FileWriter(filepath);) {
+            writer.append(String.valueOf(rozmiar)).append("\n");
+            for (int i = 0; i < rozmiar; i++) {
+                for (int j = 0; j < rozmiar; j++) {
+                   writer.append(plansza[i][j].getStan()).append(" ");
+                }
+                writer.append("\n");
+            }
 
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         new Main();

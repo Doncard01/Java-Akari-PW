@@ -4,13 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Plansza {
-
+    private List<String[]> csv = new ArrayList<>();
+    private boolean czyCSV = false;
     private int rozmiar;
-    private final Pole[][] plansza;
+    private Pole[][] plansza;
     private String[][] wybranaPlansza;
+
 
     private final static String[][] PLANSZA_LATWA = new String[][]{
             {"b", "b", "0", "b", "1", "b", "b"},
@@ -67,22 +73,39 @@ public class Plansza {
 
     }
 
+    public Plansza(List<String[]> csv) {
+        this.czyCSV = true;
+        this.csv = csv;
+        this.rozmiar = Integer.parseInt(csv.get(0)[0]);
+        plansza = new Pole[rozmiar][rozmiar];
+    }
+
     public JPanel generujPlansze() {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(rozmiar, rozmiar, 1, 1));
-
-        for (int i = 0; i < rozmiar; i++) {
-            for (int j = 0; j < rozmiar; j++) {
-                plansza[i][j] = new Pole(i, j, wybranaPlansza[i][j]);
-                addActionListener(plansza[i][j]);
-                panel.add(plansza[i][j]);
+        if (!czyCSV) {
+            for (int i = 0; i < rozmiar; i++) {
+                for (int j = 0; j < rozmiar; j++) {
+                    plansza[i][j] = new Pole(i, j, wybranaPlansza[i][j]);
+                    addActionListener(plansza[i][j]);
+                    panel.add(plansza[i][j]);
+                }
+            }
+        } else {
+            for (int i = 0; i < rozmiar; i++) {
+                for (int j = 0; j < rozmiar; j++) {
+                    plansza[i][j] = new Pole(i, j, csv.get(i+1)[j]);
+                    addActionListener(plansza[i][j]);
+                    panel.add(plansza[i][j]);
+                }
             }
         }
+
         return panel;
     }
 
-    private void addActionListener(Pole pole) {
+    void addActionListener(Pole pole) {
 
         pole.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
