@@ -35,17 +35,16 @@ public class Main {
         JLabel label6 = new JLabel("Wybierz poziom trudności", SwingConstants.CENTER);
 
         JFrame frame = new JFrame();
-        JFrame frame2 = new JFrame();
         JFrame ramkawyboru = new JFrame();
 
         JPanel panel = new JPanel();
         JPanel panelBot = new JPanel();
-        JPanel panel2 = new JPanel();
         JPanel panelwyboru = new JPanel();
 
         JButton easy = new JButton("Poziom łatwy");
         JButton mid = new JButton("Poziom średni");
         JButton hard = new JButton("Poziom trudny");
+        JButton generacja_planszy = new JButton("Wygeneruj planszę");
 
         JButton zapisGry = new JButton("Zapis gry");
         JButton zapisPNG = new JButton("Zapisz obrazek");
@@ -60,26 +59,26 @@ public class Main {
         panelPrzyciskow.add(sprawdzenie);
 
 
-
         JPanel panelPaneli = new JPanel();
         panelPaneli.setLayout(new BorderLayout());
         panelPaneli.add(panelPrzyciskow, BorderLayout.PAGE_START);
 
         JButton nowaGra = new JButton("Nowa gra");
-        nowaGra.addActionListener(e->{
+        nowaGra.addActionListener(e -> {
             closeFrame(frame);
 
-            panelwyboru.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-            panelwyboru.setLayout(new GridLayout(5,1,20,20));
+            panelwyboru.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+            panelwyboru.setLayout(new GridLayout(5, 1, 20, 20));
             panelwyboru.add(label6);
             panelwyboru.add(easy);
             panelwyboru.add(mid);
             panelwyboru.add(hard);
+            panelwyboru.add(generacja_planszy);
 
             ramkawyboru.add(panelwyboru);
             ramkawyboru.setDefaultCloseOperation(EXIT_ON_CLOSE);
             ramkawyboru.setTitle("Wybór poziomu trudności");
-            ramkawyboru.setSize(600,600);
+            ramkawyboru.setSize(600, 600);
             ramkawyboru.setLocationRelativeTo(null);
             ramkawyboru.setVisible(true);
 
@@ -167,6 +166,33 @@ public class Main {
                     }
                 });
             });
+            generacja_planszy.addActionListener(e1 -> {
+                Generacja_Planszy plansza = new Generacja_Planszy(0);
+                JPanel panelPlanszy = plansza.generujPlansze();
+                panelPlanszy.setSize(600, 600);
+                frame.getContentPane().removeAll();
+                panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
+                frame.getContentPane().add(panelPaneli);
+                frame.setSize(600, 650);
+                frame.revalidate();
+                closeFrame(ramkawyboru);
+                openFrame(frame);
+
+                zapisGry.addActionListener(e2 -> {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz grę");
+                    int userSelection = fileChooser.showSaveDialog(frame);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                        System.out.println("Plik zapisany jako: " + filePath);
+                        zapisTXT(filePath, plansza.getRozmiar(), plansza.getPlansza());
+                    } else {
+                        System.out.println("Plik nie został zapisany");
+                    }
+                });
+            });
+
+
         });
 
         JButton wczytaj = new JButton("Wczytaj");
@@ -249,11 +275,11 @@ public class Main {
     }
 
     public void zapisTXT(String filepath, int rozmiar, Pole[][] plansza) {
-        try (FileWriter writer = new FileWriter(filepath);) {
+        try (FileWriter writer = new FileWriter(filepath)) {
             writer.append(String.valueOf(rozmiar)).append("\n");
             for (int i = 0; i < rozmiar; i++) {
                 for (int j = 0; j < rozmiar; j++) {
-                   writer.append(plansza[i][j].getStan()).append(" ");
+                    writer.append(plansza[i][j].getStan()).append(" ");
                 }
                 writer.append("\n");
             }

@@ -24,7 +24,8 @@ public class Pole extends JButton {
         zmienStan(stanPoczatkowy);
 
     }
-    public void setOswietlenie(int noweOswietlenie){
+
+    public void setOswietlenie(int noweOswietlenie) {
         oswietlenie = noweOswietlenie;
     }
 
@@ -73,11 +74,13 @@ public class Pole extends JButton {
             this.setOswietlenie(1);
         }
     }
-    public void zwiekszOswietlenie(int oswietlenie){
-        this.setOswietlenie(oswietlenie+1);
+
+    public void zwiekszOswietlenie(int oswietlenie) {
+        this.setOswietlenie(oswietlenie + 1);
     }
-    public void zmniejszOswietlenie(int oswietlenie){
-        this.setOswietlenie(oswietlenie-1);
+
+    public void zmniejszOswietlenie(int oswietlenie) {
+        this.setOswietlenie(oswietlenie - 1);
     }
 
 
@@ -93,6 +96,8 @@ public class Pole extends JButton {
         return stan;
     }
 
-    public int getOswietlenie(){return oswietlenie;}
+    public int getOswietlenie() {
+        return oswietlenie;
+    }
 
 }
