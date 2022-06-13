@@ -46,6 +46,7 @@ public class Main {
         JButton hard = new JButton("Poziom trudny");
         JButton generacja_planszy = new JButton("Wygeneruj planszę");
 
+
         JButton zapisGry = new JButton("Zapis gry");
         JButton zapisPNG = new JButton("Zapisz obrazek");
         JButton hint = new JButton("Hint");
@@ -59,26 +60,51 @@ public class Main {
         panelPrzyciskow.add(sprawdzenie);
 
 
-
-
-
         JPanel panelPaneli = new JPanel();
         panelPaneli.setLayout(new BorderLayout());
         panelPaneli.add(panelPrzyciskow, BorderLayout.PAGE_START);
 
 
 
+        JButton cofnij =new JButton("Cofnij");
+        panelwyboru.add(cofnij);
+        cofnij.addActionListener(e -> {
+            closeFrame(ramkawyboru);
+            openFrame(frame);
+        });
+
+
+        JButton powrotDoMenu = new JButton("Powrót do menu głównego");
+        panelPrzyciskow.add(powrotDoMenu);
+        powrotDoMenu.addActionListener(e->{
+            closeFrame(frame);
+            frame.getContentPane().removeAll();
+            frame.add(panel, BorderLayout.CENTER);
+            openFrame(frame);
+        });
+
+
+        JButton powrotWyborPoziomu = new JButton("Powrót do wyboru poziomu");
+        panelPrzyciskow.add(powrotWyborPoziomu);
+        powrotWyborPoziomu.addActionListener(e->{
+            closeFrame(frame);
+            openFrame(ramkawyboru);
+        });
+
         JButton nowaGra = new JButton("Nowa gra");
         nowaGra.addActionListener(e -> {
             closeFrame(frame);
 
             panelwyboru.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-            panelwyboru.setLayout(new GridLayout(5, 1, 20, 20));
+            panelwyboru.setLayout(new GridLayout(6, 1, 20, 20));
             panelwyboru.add(label6);
             panelwyboru.add(easy);
             panelwyboru.add(mid);
             panelwyboru.add(hard);
             panelwyboru.add(generacja_planszy);
+
+
+
 
             ramkawyboru.add(panelwyboru);
             ramkawyboru.setDefaultCloseOperation(EXIT_ON_CLOSE);
