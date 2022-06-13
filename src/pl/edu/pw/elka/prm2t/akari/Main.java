@@ -36,7 +36,6 @@ public class Main {
 
         JFrame frame = new JFrame();
         JFrame ramkawyboru = new JFrame();
-        JFrame frame1 = new JFrame();
 
         JPanel panel = new JPanel();
         JPanel panelBot = new JPanel();
@@ -59,10 +58,7 @@ public class Main {
         panelPrzyciskow.add(hint);
         panelPrzyciskow.add(sprawdzenie);
 
-        JPanel panelPrzyciskow1 = new JPanel();
-        panelPrzyciskow1.setLayout(new GridLayout(2, 2));
-        panelPrzyciskow1.add(zapisGry);
-        panelPrzyciskow1.add(zapisPNG);
+
 
 
 
@@ -70,9 +66,7 @@ public class Main {
         panelPaneli.setLayout(new BorderLayout());
         panelPaneli.add(panelPrzyciskow, BorderLayout.PAGE_START);
 
-        JPanel panelPaneli1 = new JPanel();
-        panelPaneli1.setLayout(new BorderLayout());
-        panelPaneli1.add(panelPrzyciskow1, BorderLayout.PAGE_START);
+
 
         JButton nowaGra = new JButton("Nowa gra");
         nowaGra.addActionListener(e -> {
@@ -181,18 +175,18 @@ public class Main {
                 Generacja_Planszy plansza = new Generacja_Planszy(0);
                 JPanel panelPlanszy = plansza.generujPlansze();
                 panelPlanszy.setSize(600, 600);
-                frame1.getContentPane().removeAll();
-                panelPaneli1.add(panelPlanszy, BorderLayout.CENTER);
-                frame1.getContentPane().add(panelPaneli1);
-                frame1.setSize(600, 650);
-                frame1.revalidate();
+                frame.getContentPane().removeAll();
+                panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
+                frame.getContentPane().add(panelPaneli);
+                frame.setSize(600, 650);
+                frame.revalidate();
                 closeFrame(ramkawyboru);
-                openFrame(frame1);
+                openFrame(frame);
 
                 zapisGry.addActionListener(e2 -> {
                     JFileChooser fileChooser = new JFileChooser();
                     fileChooser.setDialogTitle("Zapisz grę");
-                    int userSelection = fileChooser.showSaveDialog(frame1);
+                    int userSelection = fileChooser.showSaveDialog(frame);
                     if (userSelection == JFileChooser.APPROVE_OPTION) {
                         String filePath = fileChooser.getSelectedFile().getAbsolutePath();
                         System.out.println("Plik zapisany jako: " + filePath);
