@@ -110,7 +110,9 @@ public class Generacja_Planszy {
                         pole.zmienStan("2");
                     }
                 } else if (Objects.equals(pole.getStan(), "4")) {
-                    if (e.getButton() == MouseEvent.BUTTON3  /*prawy*/) {
+                    if (e.getButton() == MouseEvent.BUTTON1  /*lewy*/) {
+                        pole.zmienStan("b");
+                    } else if (e.getButton() == MouseEvent.BUTTON3  /*prawy*/) {
                         pole.zmienStan("3");
                     }
                 }
