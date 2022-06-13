@@ -69,29 +69,6 @@ public class Main {
 
 
 
-        zapisPNG.addActionListener(e3 -> {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Zapisz obrazek");
-            int userSelection = fileChooser.showSaveDialog(frame);
-            if (userSelection == JFileChooser.APPROVE_OPTION) {
-                String filePath = fileChooser.getSelectedFile().getAbsolutePath()+".png";
-                System.out.println("Plik zapisany jako: " + filePath);
-
-                Container contentPane = frame.getContentPane();
-                BufferedImage image = new BufferedImage(contentPane.getWidth(), contentPane.getHeight(), BufferedImage.TYPE_INT_RGB);
-                Graphics2D g2d = image.createGraphics();
-                contentPane.printAll(g2d);
-                g2d.dispose();
-                try {
-                    ImageIO.write(image, "png", new File(filePath));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            } else {
-                System.out.println("Obraz nie został zapisany");
-            }
-        });
-
         JButton nowaGra = new JButton("Nowa gra");
         nowaGra.addActionListener(e -> {
             closeFrame(frame);
@@ -146,6 +123,29 @@ public class Main {
                     }
                 });
 
+                zapisPNG.addActionListener(e2 -> {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz obrazek");
+                    int userSelection = fileChooser.showSaveDialog(frame);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        String filePath = fileChooser.getSelectedFile().getAbsolutePath() + ".png";
+                        System.out.println("Plik zapisany jako: " + filePath);
+
+                        Container contentPane = frame.getContentPane();
+                        BufferedImage image = new BufferedImage(contentPane.getWidth(), contentPane.getHeight(), BufferedImage.TYPE_INT_RGB);
+                        Graphics2D g2d = image.createGraphics();
+                        contentPane.printAll(g2d);
+                        g2d.dispose();
+                        try {
+                            ImageIO.write(image, "png", new File(filePath));
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Obraz nie został zapisany");
+                    }
+                });
+
 
             });
             mid.addActionListener(e1 -> {
@@ -173,6 +173,28 @@ public class Main {
 
                     } else {
                         System.out.println("Plik nie został zapisany");
+                    }
+                });
+                zapisPNG.addActionListener(e2 -> {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz obrazek");
+                    int userSelection = fileChooser.showSaveDialog(frame);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        String filePath = fileChooser.getSelectedFile().getAbsolutePath() + ".png";
+                        System.out.println("Plik zapisany jako: " + filePath);
+
+                        Container contentPane = frame.getContentPane();
+                        BufferedImage image = new BufferedImage(contentPane.getWidth(), contentPane.getHeight(), BufferedImage.TYPE_INT_RGB);
+                        Graphics2D g2d = image.createGraphics();
+                        contentPane.printAll(g2d);
+                        g2d.dispose();
+                        try {
+                            ImageIO.write(image, "png", new File(filePath));
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Obraz nie został zapisany");
                     }
                 });
 
@@ -204,6 +226,28 @@ public class Main {
                         System.out.println("Plik nie został zapisany");
                     }
                 });
+                zapisPNG.addActionListener(e2 -> {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz obrazek");
+                    int userSelection = fileChooser.showSaveDialog(frame);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        String filePath = fileChooser.getSelectedFile().getAbsolutePath() + ".png";
+                        System.out.println("Plik zapisany jako: " + filePath);
+
+                        Container contentPane = frame.getContentPane();
+                        BufferedImage image = new BufferedImage(contentPane.getWidth(), contentPane.getHeight(), BufferedImage.TYPE_INT_RGB);
+                        Graphics2D g2d = image.createGraphics();
+                        contentPane.printAll(g2d);
+                        g2d.dispose();
+                        try {
+                            ImageIO.write(image, "png", new File(filePath));
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Obraz nie został zapisany");
+                    }
+                });
 
             });
             generacja_planszy.addActionListener(e1 -> {
@@ -228,6 +272,28 @@ public class Main {
                         zapisTXT(filePath, plansza.getRozmiar(), plansza.getPlansza());
                     } else {
                         System.out.println("Plik nie został zapisany");
+                    }
+                });
+                zapisPNG.addActionListener(e2 -> {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Zapisz obrazek");
+                    int userSelection = fileChooser.showSaveDialog(frame);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        String filePath = fileChooser.getSelectedFile().getAbsolutePath() + ".png";
+                        System.out.println("Plik zapisany jako: " + filePath);
+
+                        Container contentPane = frame.getContentPane();
+                        BufferedImage image = new BufferedImage(contentPane.getWidth(), contentPane.getHeight(), BufferedImage.TYPE_INT_RGB);
+                        Graphics2D g2d = image.createGraphics();
+                        contentPane.printAll(g2d);
+                        g2d.dispose();
+                        try {
+                            ImageIO.write(image, "png", new File(filePath));
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Obraz nie został zapisany");
                     }
                 });
 
@@ -283,6 +349,28 @@ public class Main {
 
                     } else {
                         System.out.println("Plik nie został zapisany");
+                    }
+                });
+                zapisPNG.addActionListener(e2 -> {
+                    JFileChooser fileChooser1 = new JFileChooser();
+                    fileChooser1.setDialogTitle("Zapisz obrazek");
+                    int userSelection1 = fileChooser1.showSaveDialog(frame);
+                    if (userSelection1 == JFileChooser.APPROVE_OPTION) {
+                        String filePath1 = fileChooser1.getSelectedFile().getAbsolutePath() + ".png";
+                        System.out.println("Plik zapisany jako: " + filePath1);
+
+                        Container contentPane = frame.getContentPane();
+                        BufferedImage image = new BufferedImage(contentPane.getWidth(), contentPane.getHeight(), BufferedImage.TYPE_INT_RGB);
+                        Graphics2D g2d = image.createGraphics();
+                        contentPane.printAll(g2d);
+                        g2d.dispose();
+                        try {
+                            ImageIO.write(image, "png", new File(filePath1));
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Obraz nie został zapisany");
                     }
                 });
 
