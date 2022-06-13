@@ -1,7 +1,9 @@
 package pl.edu.pw.elka.prm2t.akari;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,8 @@ public class Main {
         JButton zapisPNG = new JButton("Zapisz obrazek");
         JButton hint = new JButton("Hint");
         JButton sprawdzenie = new JButton("Sprawdzenie");
+        JButton cofnij = new JButton("Cofnij");
+
 
         JPanel panelPrzyciskow = new JPanel();
         panelPrzyciskow.setLayout(new GridLayout(2, 2));
@@ -59,36 +63,33 @@ public class Main {
         panelPrzyciskow.add(hint);
         panelPrzyciskow.add(sprawdzenie);
 
-
         JPanel panelPaneli = new JPanel();
         panelPaneli.setLayout(new BorderLayout());
         panelPaneli.add(panelPrzyciskow, BorderLayout.PAGE_START);
 
 
 
-        JButton cofnij =new JButton("Cofnij");
-        panelwyboru.add(cofnij);
-        cofnij.addActionListener(e -> {
-            closeFrame(ramkawyboru);
-            openFrame(frame);
-        });
+        zapisPNG.addActionListener(e3 -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Zapisz obrazek");
+            int userSelection = fileChooser.showSaveDialog(frame);
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath()+".png";
+                System.out.println("Plik zapisany jako: " + filePath);
 
-
-        JButton powrotDoMenu = new JButton("Powrót do menu głównego");
-        panelPrzyciskow.add(powrotDoMenu);
-        powrotDoMenu.addActionListener(e->{
-            closeFrame(frame);
-            frame.getContentPane().removeAll();
-            frame.add(panel, BorderLayout.CENTER);
-            openFrame(frame);
-        });
-
-
-        JButton powrotWyborPoziomu = new JButton("Powrót do wyboru poziomu");
-        panelPrzyciskow.add(powrotWyborPoziomu);
-        powrotWyborPoziomu.addActionListener(e->{
-            closeFrame(frame);
-            openFrame(ramkawyboru);
+                Container contentPane = frame.getContentPane();
+                BufferedImage image = new BufferedImage(contentPane.getWidth(), contentPane.getHeight(), BufferedImage.TYPE_INT_RGB);
+                Graphics2D g2d = image.createGraphics();
+                contentPane.printAll(g2d);
+                g2d.dispose();
+                try {
+                    ImageIO.write(image, "png", new File(filePath));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                System.out.println("Obraz nie został zapisany");
+            }
         });
 
         JButton nowaGra = new JButton("Nowa gra");
@@ -102,8 +103,7 @@ public class Main {
             panelwyboru.add(mid);
             panelwyboru.add(hard);
             panelwyboru.add(generacja_planszy);
-
-
+            panelwyboru.add(cofnij);
 
 
             ramkawyboru.add(panelwyboru);
@@ -112,6 +112,11 @@ public class Main {
             ramkawyboru.setSize(600, 600);
             ramkawyboru.setLocationRelativeTo(null);
             ramkawyboru.setVisible(true);
+
+            cofnij.addActionListener(e1 -> {
+                closeFrame(ramkawyboru);
+                openFrame(frame);
+            });
 
             easy.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(1);
@@ -140,6 +145,8 @@ public class Main {
                         System.out.println("Plik nie został zapisany");
                     }
                 });
+
+
             });
             mid.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(2);
@@ -168,6 +175,7 @@ public class Main {
                         System.out.println("Plik nie został zapisany");
                     }
                 });
+
             });
             hard.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(3);
@@ -196,6 +204,7 @@ public class Main {
                         System.out.println("Plik nie został zapisany");
                     }
                 });
+
             });
             generacja_planszy.addActionListener(e1 -> {
                 Generacja_Planszy plansza = new Generacja_Planszy(0);
@@ -221,13 +230,16 @@ public class Main {
                         System.out.println("Plik nie został zapisany");
                     }
                 });
+
             });
 
 
         });
 
         JButton wczytaj = new JButton("Wczytaj");
-        wczytaj.addActionListener(e -> {
+        wczytaj.addActionListener(e ->
+
+        {
             List<String[]> csv = new ArrayList<>();
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Wczytaj grę");
@@ -273,6 +285,7 @@ public class Main {
                         System.out.println("Plik nie został zapisany");
                     }
                 });
+
             }
         });
 
@@ -280,14 +293,18 @@ public class Main {
         zamknij.addActionListener(e -> System.exit(1));
 
         panelBot.setBorder(BorderFactory.createEmptyBorder(15, 130, 0, 130));
-        panelBot.setLayout(new GridLayout(4, 0, 20, 20));
+        panelBot.setLayout(new
+
+                GridLayout(4, 0, 20, 20));
         panelBot.add(label2);
         panelBot.add(label3);
         panelBot.add(label4);
         panelBot.add(label5);
 
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 15, 30));
-        panel.setLayout(new BorderLayout());
+        panel.setLayout(new
+
+                BorderLayout());
         panel.add(label, BorderLayout.PAGE_START);
         panel.add(wczytaj, BorderLayout.LINE_START);
         panel.add(nowaGra, BorderLayout.CENTER);
@@ -300,6 +317,7 @@ public class Main {
         frame.setTitle("Gra Akari");
         frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);
+
         openFrame(frame);
 
 
