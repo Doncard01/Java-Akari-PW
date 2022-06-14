@@ -273,7 +273,8 @@ public class Plansza {
                     Objects.equals(poleZNastepnejKolumny.getStan(), "0") ||
                     Objects.equals(poleZNastepnejKolumny.getStan(), "1") ||
                     Objects.equals(poleZNastepnejKolumny.getStan(), "2") ||
-                    Objects.equals(poleZNastepnejKolumny.getStan(), "3")) {
+                    Objects.equals(poleZNastepnejKolumny.getStan(), "3") ||
+                    Objects.equals(poleZNastepnejKolumny.getStan(), "4")) {
                 break;
             }
             switch (poleZNastepnejKolumny.getStan()) {
@@ -294,7 +295,8 @@ public class Plansza {
                     Objects.equals(poleZPoprzedniejKolumny.getStan(), "0") ||
                     Objects.equals(poleZPoprzedniejKolumny.getStan(), "1") ||
                     Objects.equals(poleZPoprzedniejKolumny.getStan(), "2") ||
-                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "3")) {
+                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "3") ||
+                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "4")) {
                 break;
             }
             switch (poleZPoprzedniejKolumny.getStan()) {
@@ -315,7 +317,8 @@ public class Plansza {
                     Objects.equals(poleZPoprzedniegoWiersza.getStan(), "0") ||
                     Objects.equals(poleZPoprzedniegoWiersza.getStan(), "1") ||
                     Objects.equals(poleZPoprzedniegoWiersza.getStan(), "2") ||
-                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "3")) {
+                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "3") ||
+                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "4")){
                 break;
             }
             switch (poleZPoprzedniegoWiersza.getStan()) {
@@ -336,7 +339,8 @@ public class Plansza {
                     Objects.equals(poleZNastepengoWiersza.getStan(), "0") ||
                     Objects.equals(poleZNastepengoWiersza.getStan(), "1") ||
                     Objects.equals(poleZNastepengoWiersza.getStan(), "2") ||
-                    Objects.equals(poleZNastepengoWiersza.getStan(), "3")) {
+                    Objects.equals(poleZNastepengoWiersza.getStan(), "3") ||
+                    Objects.equals(poleZNastepengoWiersza.getStan(), "4")) {
                 break;
             }
             switch (poleZNastepengoWiersza.getStan()) {
@@ -360,7 +364,8 @@ public class Plansza {
                     Objects.equals(poleZNastepnejKolumny.getStan(), "0") ||
                     Objects.equals(poleZNastepnejKolumny.getStan(), "1") ||
                     Objects.equals(poleZNastepnejKolumny.getStan(), "2") ||
-                    Objects.equals(poleZNastepnejKolumny.getStan(), "3")) {
+                    Objects.equals(poleZNastepnejKolumny.getStan(), "3") ||
+                    Objects.equals(poleZNastepnejKolumny.getStan(), "4")){
                 break;
             }
             switch (poleZNastepnejKolumny.getStan()) {
@@ -394,7 +399,8 @@ public class Plansza {
                     Objects.equals(poleZPoprzedniejKolumny.getStan(), "0") ||
                     Objects.equals(poleZPoprzedniejKolumny.getStan(), "1") ||
                     Objects.equals(poleZPoprzedniejKolumny.getStan(), "2") ||
-                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "3")) {
+                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "3") ||
+                    Objects.equals(poleZPoprzedniejKolumny.getStan(), "4")) {
                 break;
             }
             switch (poleZPoprzedniejKolumny.getStan()) {
@@ -428,7 +434,8 @@ public class Plansza {
                     Objects.equals(poleZPoprzedniegoWiersza.getStan(), "0") ||
                     Objects.equals(poleZPoprzedniegoWiersza.getStan(), "1") ||
                     Objects.equals(poleZPoprzedniegoWiersza.getStan(), "2") ||
-                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "3")) {
+                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "3") ||
+                    Objects.equals(poleZPoprzedniegoWiersza.getStan(), "4")) {
                 break;
             }
             switch (poleZPoprzedniegoWiersza.getStan()) {
@@ -462,7 +469,8 @@ public class Plansza {
                     Objects.equals(poleZNastepengoWiersza.getStan(), "0") ||
                     Objects.equals(poleZNastepengoWiersza.getStan(), "1") ||
                     Objects.equals(poleZNastepengoWiersza.getStan(), "2") ||
-                    Objects.equals(poleZNastepengoWiersza.getStan(), "3")) {
+                    Objects.equals(poleZNastepengoWiersza.getStan(), "3") ||
+                    Objects.equals(poleZNastepengoWiersza.getStan(), "4")) {
                 break;
             }
             switch (poleZNastepengoWiersza.getStan()) {
