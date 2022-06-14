@@ -195,6 +195,77 @@ public class Plansza {
         }
     }
 
+    public boolean petleSprawdzajace() {
+        boolean blad = false;
+        for (int i = 0; i < rozmiar; i++) {
+            for (int j = 0; j < rozmiar; j++) {
+                Pole poleTemp = getPole(i,j);
+                if(Objects.equals(poleTemp.getStan(), "b")){
+                    blad = true;
+                }
+                else if(Objects.equals(poleTemp.getStan(), "z")) {
+                    if (poleTemp.getOswietlenie() > 0) {
+                        blad = true;
+                        break;
+                    }
+                }
+                else if (Objects.equals(poleTemp.getStan(), "0")) {
+                    int check0 = sprawdzenieZarowek(i, j);
+                    if (check0 != 0) {
+                        blad = true;
+                        break;
+                    }
+                }
+                else if (Objects.equals(poleTemp.getStan(), "1")) {
+                    int check1 = sprawdzenieZarowek(i, j);
+                    if (check1 != 1) {
+                        blad = true;
+                        break;
+                    }
+                }
+                else if (Objects.equals(poleTemp.getStan(), "2")) {
+                    int check2 = sprawdzenieZarowek(i, j);
+                    if (check2 != 2) {
+                        blad = true;
+                        break;
+                    }
+                }
+                else if (Objects.equals(poleTemp.getStan(), "3")) {
+                    int check3 = sprawdzenieZarowek(i, j);
+                    if (check3 != 3) {
+                        blad = true;
+                        break;
+                    }
+                }
+                else if (Objects.equals(poleTemp.getStan(), "4")) {
+                    int check4 = sprawdzenieZarowek(i, j);
+                    if (check4 != 4) {
+                        blad = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return blad;
+    }
+
+    public int sprawdzenieZarowek(int i, int j) {
+        int lightsAmount = 0;
+        if (i>0 && Objects.equals(getPole(i-1,j).getStan(), "z")){
+            lightsAmount++;
+        }
+        if (j>0 && Objects.equals(getPole(i,j-1).getStan(), "z")){
+            lightsAmount++;
+        }
+        if (i<rozmiar-1 && Objects.equals(getPole(i+1,j).getStan(), "z")){
+            lightsAmount++;
+        }
+        if (j<rozmiar-1 && Objects.equals(getPole(i,j+1).getStan(), "z")){
+            lightsAmount++;
+        }
+        return lightsAmount;
+    }
+
     public void petleWlaczajace(Pole pole) {
         for (int i = 1; i < (rozmiar - pole.getKolumna()); i++) {
             Pole poleZNastepnejKolumny = getPole(pole.getWiersz(), (pole.getKolumna()) + i);

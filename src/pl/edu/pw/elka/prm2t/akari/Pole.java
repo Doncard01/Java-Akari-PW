@@ -1,11 +1,7 @@
 package pl.edu.pw.elka.prm2t.akari;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 public class Pole extends JButton {

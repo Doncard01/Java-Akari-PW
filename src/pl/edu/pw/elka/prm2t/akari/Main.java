@@ -3,10 +3,13 @@ package pl.edu.pw.elka.prm2t.akari;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -48,6 +51,11 @@ public class Main {
         JButton hard = new JButton("Poziom trudny");
         JButton generacja_planszy = new JButton("Wygeneruj planszę");
 
+        JTextField info = new JTextField();
+        info.setEditable(false);
+        info.setHorizontalAlignment(JTextField.CENTER);
+        info.setBackground(Color.WHITE);
+        info.setFont(new Font("Tahoma", Font. BOLD, 14));
 
         JButton zapisGry = new JButton("Zapis gry");
         JButton zapisPNG = new JButton("Zapisz obrazek");
@@ -57,16 +65,19 @@ public class Main {
 
 
         JPanel panelPrzyciskow = new JPanel();
-        panelPrzyciskow.setLayout(new GridLayout(2, 2));
-        panelPrzyciskow.add(zapisGry);
-        panelPrzyciskow.add(zapisPNG);
-        panelPrzyciskow.add(hint);
-        panelPrzyciskow.add(sprawdzenie);
+        JPanel panelPodprzyciskow = new JPanel();
+        panelPodprzyciskow.setLayout(new GridLayout(2, 2));
+        panelPodprzyciskow.add(zapisGry);
+        panelPodprzyciskow.add(zapisPNG);
+        panelPodprzyciskow.add(hint);
+        panelPodprzyciskow.add(sprawdzenie);
+        panelPrzyciskow.setLayout(new GridLayout(2, 1));
+        panelPrzyciskow.add(info);
+        panelPrzyciskow.add(panelPodprzyciskow);
 
         JPanel panelPaneli = new JPanel();
         panelPaneli.setLayout(new BorderLayout());
         panelPaneli.add(panelPrzyciskow, BorderLayout.PAGE_START);
-
 
 
         JButton nowaGra = new JButton("Nowa gra");
@@ -95,6 +106,16 @@ public class Main {
                 openFrame(frame);
             });
 
+            hint.addActionListener(e33 -> {
+                ArrayList<String> hinty = new ArrayList<>();
+                hinty.add("Wszystkie białe pola muszą być oświetlone!");
+                hinty.add("Żarówki nie mogą oświetlać siebie nawzajem!");
+                hinty.add("Cyfry na czarnych polach oznaczają ile ma stać żarówek przy ich ścianach!");
+                int random_int = (int) (Math.random()*3+1);
+                String Tekst = hinty.get(random_int - 1);
+                pokazanieTekstu(info, Tekst, Color.BLACK, 3000);
+            });
+
             easy.addActionListener(e1 -> {
                 Plansza plansza = new Plansza(1);
                 JPanel panelPlanszy = plansza.generujPlansze();
@@ -103,10 +124,20 @@ public class Main {
                 frame.getContentPane().removeAll();
                 panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
                 frame.getContentPane().add(panelPaneli);
-                frame.setSize(600, 650);
+                frame.setSize(600, 700);
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
+
+                sprawdzenie.addActionListener(e3 -> {
+                    boolean blad = plansza.petleSprawdzajace();
+                    if (blad) {
+                        pokazanieTekstu(info, "Na planszy jest błąd! Znajdź go i napraw!", Color.red, 2500);
+                    }
+                    else {
+                        pokazanieTekstu(info, "Plansza poprawnie rozwiazana! Gratulacje!", new Color(56,166,78), 10000);
+                    }
+                });
 
                 zapisGry.addActionListener(e2 -> {
                     JFileChooser fileChooser = new JFileChooser();
@@ -156,10 +187,20 @@ public class Main {
                 frame.getContentPane().removeAll();
                 panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
                 frame.getContentPane().add(panelPaneli);
-                frame.setSize(600, 650);
+                frame.setSize(600, 700);
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
+
+                sprawdzenie.addActionListener(e3 -> {
+                    boolean blad = plansza.petleSprawdzajace();
+                    if (blad) {
+                        pokazanieTekstu(info, "Na planszy jest błąd! Znajdź go i napraw!", Color.red, 2500);
+                    }
+                    else {
+                        pokazanieTekstu(info, "Plansza poprawnie rozwiazana! Gratulacje!", new Color(56,166,78), 10000);
+                    }
+                });
 
                 zapisGry.addActionListener(e2 -> {
                     JFileChooser fileChooser = new JFileChooser();
@@ -207,10 +248,20 @@ public class Main {
                 frame.getContentPane().removeAll();
                 panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
                 frame.getContentPane().add(panelPaneli);
-                frame.setSize(600, 650);
+                frame.setSize(600, 700);
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
+
+                sprawdzenie.addActionListener(e3 -> {
+                    boolean blad = plansza.petleSprawdzajace();
+                    if (blad) {
+                        pokazanieTekstu(info, "Na planszy jest błąd! Znajdź go i napraw!", Color.red, 2500);
+                    }
+                    else {
+                        pokazanieTekstu(info, "Plansza poprawnie rozwiazana! Gratulacje!", new Color(56,166,78), 10000);
+                    }
+                });
 
                 zapisGry.addActionListener(e2 -> {
                     JFileChooser fileChooser = new JFileChooser();
@@ -257,7 +308,7 @@ public class Main {
                 frame.getContentPane().removeAll();
                 panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
                 frame.getContentPane().add(panelPaneli);
-                frame.setSize(600, 650);
+                frame.setSize(600, 700);
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
@@ -332,7 +383,7 @@ public class Main {
                 frame.getContentPane().removeAll();
                 panelPaneli.add(panelPlanszy, BorderLayout.CENTER);
                 frame.getContentPane().add(panelPaneli);
-                frame.setSize(600, 650);
+                frame.setSize(600, 700);
                 frame.revalidate();
                 closeFrame(ramkawyboru);
                 openFrame(frame);
@@ -381,18 +432,14 @@ public class Main {
         zamknij.addActionListener(e -> System.exit(1));
 
         panelBot.setBorder(BorderFactory.createEmptyBorder(15, 130, 0, 130));
-        panelBot.setLayout(new
-
-                GridLayout(4, 0, 20, 20));
+        panelBot.setLayout(new GridLayout(4, 0, 20, 20));
         panelBot.add(label2);
         panelBot.add(label3);
         panelBot.add(label4);
         panelBot.add(label5);
 
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 15, 30));
-        panel.setLayout(new
-
-                BorderLayout());
+        panel.setLayout(new BorderLayout());
         panel.add(label, BorderLayout.PAGE_START);
         panel.add(wczytaj, BorderLayout.LINE_START);
         panel.add(nowaGra, BorderLayout.CENTER);
@@ -423,6 +470,26 @@ public class Main {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void pokazanieTekstu(JTextField info, String text, Color color, int czas){
+        ActionListener clearTask = e12 ->
+            info.setText("");
+
+        ActionListener task = e22 -> {
+            info.setText(text);
+            info.setForeground(color);
+        };
+        boolean ready = Objects.equals(info.getText(), "");
+
+        if(ready) {
+            Timer timer = new Timer(0, task);
+            Timer timerClear = new Timer(czas, clearTask);
+            timer.start();
+            timer.setRepeats(false);
+            timerClear.start();
+            timerClear.setRepeats(false);
         }
     }
 
