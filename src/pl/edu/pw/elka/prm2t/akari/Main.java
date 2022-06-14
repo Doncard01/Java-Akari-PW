@@ -61,7 +61,7 @@ public class Main {
         JButton zapisPNG = new JButton("Zapisz obrazek");
         JButton hint = new JButton("Hint");
         JButton sprawdzenie = new JButton("Sprawdzenie");
-        JButton cofnij = new JButton("Cofnij");
+
 
 
         JPanel panelPrzyciskow = new JPanel();
@@ -91,7 +91,7 @@ public class Main {
             panelwyboru.add(mid);
             panelwyboru.add(hard);
             panelwyboru.add(generacja_planszy);
-            panelwyboru.add(cofnij);
+
 
 
             ramkawyboru.add(panelwyboru);
@@ -101,10 +101,7 @@ public class Main {
             ramkawyboru.setLocationRelativeTo(null);
             ramkawyboru.setVisible(true);
 
-            cofnij.addActionListener(e1 -> {
-                closeFrame(ramkawyboru);
-                openFrame(frame);
-            });
+
 
             hint.addActionListener(e33 -> {
                 ArrayList<String> hinty = new ArrayList<>();
