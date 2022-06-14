@@ -299,7 +299,7 @@ public class Main {
 
             });
             generacja_planszy.addActionListener(e1 -> {
-                Generacja_Planszy plansza = new Generacja_Planszy(0);
+                GenerowaniePlanszy plansza = new GenerowaniePlanszy(0);
                 JPanel panelPlanszy = plansza.generujPlansze();
                 panelPlanszy.setSize(600, 600);
                 frame.getContentPane().removeAll();
