@@ -85,6 +85,8 @@ public class Plansza {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(rozmiar, rozmiar, 1, 1));
         if (!czyCSV) {
+            // [JW] W tych dwóch pętlach powtarza się znaczna część kodu. Lepiej byłoby wspólną część wyekstrahować do
+            // jakiejś metody.
             for (int i = 0; i < rozmiar; i++) {
                 for (int j = 0; j < rozmiar; j++) {
                     plansza[i][j] = new Pole(i, j, wybranaPlansza[i][j]);

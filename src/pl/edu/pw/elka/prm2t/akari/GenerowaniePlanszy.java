@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 
-public class GenerowaniePlanszy {
+public class GenerowaniePlanszy extends Plansza {
 
     private int rozmiar;
     private final Pole[][] plansza;
@@ -27,6 +27,7 @@ public class GenerowaniePlanszy {
     };
 
     public GenerowaniePlanszy(int poziom) {
+        super(poziom);
         if (poziom == 0) {
             this.rozmiar = 10;
             wybranaPlansza = PLANSZA_DO_GENERACJI;
